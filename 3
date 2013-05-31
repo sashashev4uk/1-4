@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+void main()
+
+{
+  const int MAX=15;
+	unsigned short x[MAX]={1,2,3,4,5,11,12,13,14,15,21,22,23,24,25};
+	unsigned short a=10,b=20;
+	int y=0;
+
+	cout << "Do [a;b]:\t";
+
+	while(x[y]!=NULL)
+
+	{
+		if(y<=MAX) {if(x[y]<a) {cout << x[y] << " ";}} y++;
+	}
+
+	y=0;
+	cout << endl;
+	cout << "Mezdy [a;b]:\t";
+
+	while(x[y]!=NULL)
+
+	{
+		if(y<=MAX) {if((x[y]>=a)&&(x[y]<=b)) {cout << x[y] << " ";}} y++;
+	}
+
+	y=0;
+	cout << endl;
+	cout << "Posle [a;b]\t";
+
+	while(x[y]!=NULL)
+
+	{
+		if(y<MAX) {if(x[y]>b) {cout << x[y] << " ";}} y++;
+	}
+
+	cin.get();
+}
