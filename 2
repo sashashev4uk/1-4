@@ -1,0 +1,177 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+
+class processor
+{
+
+  int *tch;
+  int *cena;
+	string *type;
+
+public: 
+
+	int gettch() const{return *tch;}
+	void settch(int stch) {stch=*tch;}
+	int getcena() const{return *cena;}
+	void setcena(int scena) {scena=*cena;}
+	string gettype() const{return *type;}
+	void settype(string _type) {_type=*type;}
+
+
+	void equals(const processor &q);
+	void input();
+	void output();
+	//constructors and destructors
+
+	processor();
+	~processor();
+	processor(int,int,string);
+	processor(int);
+	//processor(const processor &);
+
+};
+
+
+//конструктор по умолчанию
+
+processor::processor()
+{
+
+	tch=new int;
+	cena=new int;
+	type=new string;
+
+	*tch=1000;
+	*cena=70;
+    *type="ATM";
+
+}
+
+//конструктор с параметрами
+
+processor::processor(int a,int b,string c)
+{
+	tch= new int;
+	cena= new int;
+	type= new string;
+
+	*tch=a;
+	*cena=b;
+	*type=c;
+
+}
+
+//клавиатурный конструктор
+
+processor::processor(int a)
+{
+
+	input();
+
+}
+
+//деструктор
+
+processor::~processor()
+{
+
+	delete tch;
+	delete cena;
+	delete type;
+
+	tch=0;
+	cena=0;
+	type=0;
+
+}
+
+
+void processor::input()
+{
+	int a;
+	int b;
+	string c;
+
+	cout<<"Введите тактовую частоту, цену и тип через пробел: "<<endl;
+	cin>>a>>b>>c;
+
+	*tch=a;
+	*cena=b;
+	*type=c;
+
+}
+
+void processor::output()
+{
+
+	cout<<"Тактовая частота: "<<*tch<<endl;
+	cout<<"Цена: "<<*cena<<endl;
+	cout<<"Тип: ";
+	cout<<*type<<endl;
+
+}
+
+void processor::equals(const processor &q)
+{
+	int n,p;
+
+	cout<<"Сравнение тактовых частот:"<<endl;
+	n=(gettch()-q.gettch());
+	if (n>0)
+		cout<<gettype()<<" больше "<<q.gettype()<<" на "<<n<<endl;
+	else if (n<0)
+		cout<<q.gettype()<<" больше "<<gettype()<<" на "<<(n*(-1))<<endl;
+	else cout<<"Равны = "<<gettch()<<endl;
+
+	cout<<"Сравнение цены: "<<endl;
+	p=(getcena()-q.getcena());
+	if (p>0)
+		cout<<gettype()<<" больше "<<q.gettype()<<" на "<<p<<endl;
+	else if (p<0)
+		cout<<q.gettype()<<" больше "<<gettype()<<" на "<<(p*(-1))<<endl;
+	else cout<<"Равны = "<<getcena()<<endl;
+
+}
+
+int main(){
+
+	setlocale(LC_ALL,".1251");
+
+
+	processor F;
+	processor S(1000,800,"ATM");
+	processor T(1);
+	processor Fo(T);
+
+
+	F.setcena(300);
+	F.settch(900);
+	F.settype("AMD");
+
+	Fo.input();
+
+	F.output();
+	S.output();
+	T.output();
+	Fo.output();
+	cin.get();
+
+	cout<<"\nПервый объект: "<<endl;
+	F.output();
+	cout<<"\nВторой объект: "<<endl;
+	S.output();
+	cout<<"\nТретий объект: "<<endl;
+	T.output();
+	cout<<"\nЧетвертый объект: "<<endl;
+	Fo.output();
+
+	cin.get();
+ 
+	S.equals (T); 
+
+	cin.get();
+	return 0;
+}
