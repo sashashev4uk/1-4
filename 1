@@ -1,0 +1,129 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class car // автомобиль
+{
+public:
+// Функции ===========================
+void screen();
+
+// Методы ============================
+string getModel() const;
+int getSpeed() const;
+int getSeat() const;
+void setModel(string);
+void setSpeed(int);
+void setSeat(int) ;
+bool Equals(car&);
+
+// Кострукторы, деструктор ===========
+car();
+car(int);
+car(string, int, int);
+car(car&);
+
+private:
+string _model; // модель 
+int _seat; // к-во мест
+int _speed; // макс. скорость
+};
+car::car()
+{
+_model = "audi";
+_seat = 4;
+_speed = 240;
+}
+car::car(int)
+{
+cout << "Модель машины: ";
+cin >> _model;
+cout << "К-во мест: ";
+cin >> _seat;
+cout << "Макс. скорость: ";
+cin >> _speed;
+}
+car::car(string model, int seat, int speed)
+{
+_model = model;
+_seat = seat;
+_speed = speed;
+}
+car::car(car &val)
+{
+_model = val._model;
+_seat = val._seat;
+_speed = val._speed;
+}
+
+string car::getModel() const
+{
+return _model;
+}
+int car::getSpeed() const 
+{
+return _speed;
+}
+int car::getSeat() const
+{
+return _seat;
+}
+void car::setModel(string val)
+{
+_model = val;
+}
+void car::setSpeed(int val)
+{
+_speed = val;
+}
+void car::setSeat(int val)
+{
+_seat = val;
+}
+bool car::Equals(car &val)
+{
+return(_model == val._model && _seat == val._seat && _speed == val._speed);
+}
+
+void car::screen()
+{
+cout << "Модель машины: " << _model 
+<< "К-во мест: " << _seat 
+<< "Макс. скорость: " << _speed << endl;
+}
+
+void main()
+{
+setlocale(LC_ALL,"russian");
+
+// 2
+car car1,
+car2(0),
+car3("reno",3,180),
+car4(car3);
+
+// 3
+car1.setModel("mitsubisi");
+car1.setSeat(5);
+car1.setSpeed(250);
+
+// 4
+car4 = car(0);
+
+// 5 
+car1.screen();
+car2.screen();
+car3.screen();
+car4.screen();
+
+// 6
+if(car1.Equals(car2)){
+cout << "Объекты равны.\n";
+}else{
+cout << "Объекты разные.\n";
+}
+
+// 7
+
+system("pause");
+}
