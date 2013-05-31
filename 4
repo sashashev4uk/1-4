@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+void main()
+{
+  char q[31]="";
+	cout << "Vvedit` viraz iz duzjok do 30 simvoliv:" << endl;
+	cin >> q;
+	int i=0;	int k=0;	int l=0;	int p=0;	int t=0;
+	
+	while
+		((q[t]!=NULL)&&(i!=-1)&&(l!=-1)&&(k!=-1)&&(p!=-1))
+	{
+		if(q[t]=='('||')'||'['||']'||'{'||'}'||'<'||'>')
+		{
+			if((q[t]=='(')) {i++; t++;}
+			if((q[t]=='[')) {l++; t++;}
+			if((q[t]=='{')) {p++; t++;}
+			if((q[t]=='<')) {k++; t++;}
+		if(q[t]==')') {i--; t++;}
+		if(q[t]==']') {l--; t++;}
+		if(q[t]=='>') {k--; t++;}
+		if(q[t]=='}') {p--; t++;}
+		}
+		else t++;
+	}
+	if ((i==0)&&(l==0)&&(k==0)&&(p==0)) cout << "Correct";
+
+	if ((i!=0)||(l!=0)||(k!=0)||(p!=0)) cout << "Incorrect";
+
+	cin.get();
+	cin.get();
+}
